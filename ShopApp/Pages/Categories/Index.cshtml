@@ -1,0 +1,30 @@
+﻿@page
+@model ShopAppUI.Pages.Categories.IndexModel
+@{
+    ViewData["Title"] = "Categories";
+}
+<div class="container">
+    <h4 class="text-center">Categories</h4>
+    <p class="alert-dark text-center">@Model.Message</p>
+    <ul class="list-group">
+        @foreach (var category in Model.Categories)
+        {
+            <li class="list-group-item">
+                <div class="row bg-light">
+                    <div class="col">@category.Name</div>
+                    <div class="col">
+                        <form asp-page="Categories/Index">
+                            <button type="submit" name="id" asp-page-handler="Delete" value="@category.Id" class="btn btn-outline-dark">Delete</button>
+                        </form>
+                    </div>
+                    <div class="col">
+                        <form action="Categories/Edit/@category.Id" method="get">
+                            <button type="submit" class="btn btn-outline-success px-4">Edit</button>
+                        </form>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+    <a href="\Categories\Create" class="btn btn-dark btn-lg btn-block mt-1">Add a new category</a>
+</div>

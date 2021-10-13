@@ -1,0 +1,32 @@
+﻿@page "{id}"
+@model ShopAppUI.Pages.BuyItemModel
+@{
+    ViewData["Title"] = "Buy the item";
+    var imagePath = "";
+    imagePath = @"..\images\";
+}
+<div class="container">
+    <h4 class="text-center">@ViewData["Title"]</h4>
+    <div class="col"><img src="@(imagePath+Model.Item.Image)" class="img-fluid" alt="Items image" width="200"></div>
+    <div class="row bg-light font-weight-bolder">
+        <div class="col">Name</div>
+        <div class="col text-break">Description</div>
+        <div class="col">Quantity</div>
+        <div class="col">Price, EUR</div>
+    </div>
+    <div class="row bg-light mt-2 mb-5" style="font-size:larger">
+        <div class="col">@Model.Item.Name</div>
+        <div class="col text-break">@Model.Item.Description</div>
+        <div class="col"> @Model.Item.Quantity</div>
+        <div class="col"> @Model.Item.Price</div>
+    </div>
+    <form asp-page="BuyItem">
+        <div class="form-group">
+            <label class="form-label" asp-for="Number"></label>
+            <input class="form-control" asp-for="Number" />
+            <span class="text-danger" asp-validation-for="Number"></span>
+        </div>
+        <button type="submit" class="btn btn-success px-4">Buy</button>
+    </form>      
+        <p class="alert-success text-dark text-center mt-2 py-4 font-weight-bolder">@Model.Message</p>   
+</div>

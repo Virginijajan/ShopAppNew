@@ -1,0 +1,46 @@
+﻿@page "{handler?}"
+@model ShopAppUI.Pages.Items.IndexModel
+@{
+    ViewData["Title"] = "Shop items list";   
+}
+<div class="text-center">
+    <h4>@ViewData["Title"]</h4>
+    <p class="alert-dark mt-2">@Model.Message</p>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <div class="row bg-light font-weight-bold">
+                <div class="col mt-1">ID</div>
+                <div class="col mt-1">Name</div>
+                <div class="col mt-1">Description</div>
+                <div class="col mt-1">Quantity</div>
+                <div class="col mt-1">Price, EUR</div>
+                <div class="col mt-1"></div>
+                <div class="col mt-1"></div>
+            </div>
+        </li>
+        @foreach (var item in Model.itemsViewModel)
+        {
+            <li class="list-group-item">
+                <div class="row bg-light">
+                    <div class="col mt-1">@item.Id</div>
+                    <div class="col mt-1">@item.Name</div>
+                    <div class="col mt-1 text-break">@item.Description</div>
+                    <div class="col mt-1"> @item.Quantity</div>
+                    <div class="col mt-1"> @item.Price</div>
+                    <div class="col mt-1">
+                        <form asp-page="Items/Index">
+                            <button type="submit" name="id" asp-page-handler="Delete" value="@item.Id" class="btn btn-outline-dark">Delete</button>
+                        </form>
+                    </div>
+                    <div class="col mt-1">
+                        <form action="Items/Edit/@item.Id" method="get">
+                            <button type="submit" class="btn btn-outline-success px-4">Edit</button>
+                        </form>
+                    </div>
+                </div>
+
+            </li>
+        }
+    </ul>
+    <a href="\Items\Create" class="btn btn-dark btn-lg btn-block mt-1">Add a new item</a>
+</div>
