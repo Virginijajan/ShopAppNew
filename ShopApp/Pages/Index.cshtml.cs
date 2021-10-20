@@ -17,6 +17,10 @@ namespace ShopApp.Pages
     {      
         private readonly CategoriesService _categoriesService;        
         public List<CategoryViewModel> Categories { get; set; }
+        [BindProperty(SupportsGet =true)]
+        public List<string> Message { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public decimal Amount { get; set; } = 0;
         public IndexModel( CategoriesService categoriesService)
         {        
             _categoriesService = categoriesService;

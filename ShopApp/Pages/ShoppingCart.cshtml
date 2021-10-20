@@ -1,0 +1,46 @@
+﻿@page "{handler?}/{id?}"
+@model ShopAppUI.Pages.ShoppingCartModel
+@{
+    ViewData["Title"] = "Shopping cart";
+    var imagePath = "";
+    imagePath = @"..\..\images\";
+}
+<div class="text-center">
+    <h4>@ViewData["Title"]</h4>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <div class="row bg-light font-weight-bold">
+                <div class="col mt-1">ID</div>
+                <div class="col mt-1">Name</div>
+                <div class="col mt-1">Description</div>
+                <div class="col mt-1">Quantity</div>
+                <div class="col mt-1">Price, EUR</div>
+                <div class="col mt-1">Image</div>
+                <div class="col mt-1"></div>
+            </div>
+        </li>
+        @foreach (var item in Model.items)
+        {
+            <li class="list-group-item">
+                <div class="row bg-light">
+                    <div class="col mt-4"> @item.Id</div>
+                    <div class="col mt-4">@item.Name</div>
+                    <div class="col mt-4 text-break"> @item.Description</div>
+                    <div class="col mt-4"> @Model.shoppingCart[item.Id]</div>
+                    <div class="col mt-4">@item.Price</div>
+                    <div class="col"><img src="@(imagePath+item.Image)" class="img-fluid" alt="Items image" width="100"></div>
+                    <div class="col mt-4">
+                        <form asp-page="ShoppingCart">
+                            <button type="submit" name="id" asp-page-handler="Delete" value="@item.Id" class="btn btn-outline-dark">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+    <div>Total amount: @Model.Amount</div>
+    <form asp-page="ShoppingCart">
+        <button type="submit" class="btn btn-outline-dark">Buy</button>
+    </form>
+    <div class="col mt-4"><a class="btn btn-outline-success px-4" href="\Items\AllItems">Shop items</a></div>
+</div>

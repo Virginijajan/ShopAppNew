@@ -105,5 +105,27 @@ namespace ShopService.ViewModels
                 Price = i.Price
             }).ToListAsync();
         }
+        public async Task<List<ItemViewModel>> GetShoppingCartItems(Dictionary<int, int>items)
+        {
+            var itemsId = items.Keys;
+            return await _db.Items.Where(i => itemsId.Contains(i.Id)).Select(i => new ItemViewModel
+            {
+                Id = i.Id,
+                Name = i.Name,
+                Description = i.Description,
+                Image = i.Image,
+                Quantity = i.Quantity,
+                Price = i.Price
+            }).ToListAsync();
+        }
+        public decimal GetShoppingCartAmount(Dictionary<int, int> items)
+        {
+            var itemsId = items.Keys;
+            decimal amount = 0;
+            var itemsAmount= _db.Items.Where(i => itemsId.Contains(i.Id)).Select(i => i.Price*items[i.Id]);
+            foreach (var item in itemsAmount)
+                amount += item;
+          return amount;
+        }
     }   
 }

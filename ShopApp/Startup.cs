@@ -31,12 +31,16 @@ namespace ShopApp
                 .GetConnectionString("DefaultConnection");
 
             services.AddDbContext<AppDbContext>(
-                options => options.UseSqlServer(connString));             
-            
+                options => options.UseSqlServer(connString));
+
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddEntityFrameworkStores<AppDbContext>();
+
             services.AddRazorPages();
             services.AddScoped<CategoriesService>();
             services.AddScoped<ShopItemsService>();
             services.AddScoped<BuyService>();
+            services.AddSingleton<ShoppingCartService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +62,7 @@ namespace ShopApp
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -22,4 +22,16 @@
             </div>
         </li>
     </ul>
+    <div class="mt-4">
+        @if (Model.Amount != 0)
+        {
+            <ul class="list-group">
+                @foreach (var message in Model.Message)
+                {
+                    <li class="list-group-item">@message</li>
+                }
+                <li class="list-group-item font-weight-bold">Total amount: @Model.Amount</li>
+            </ul>
+        }
+    </div>
 </div>
