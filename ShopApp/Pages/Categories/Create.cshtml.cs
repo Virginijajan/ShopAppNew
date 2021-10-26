@@ -16,7 +16,7 @@ namespace ShopAppUI.Pages.Categories
         private readonly CategoriesService _categoriesService;
 
         [BindProperty]
-        public CategoryViewModel categoryViewModel { get; set; }
+        public CategoryViewModel CategoryViewModel { get; set; }
         public CreateModel(CategoriesService categoriesService)
         {         
             _categoriesService = categoriesService;
@@ -31,7 +31,7 @@ namespace ShopAppUI.Pages.Categories
             {
                 return Page();
             }
-            await _categoriesService.AddNewCategory(categoryViewModel);
+            await _categoriesService.AddNewCategory(CategoryViewModel);
             Message = _categoriesService.Message;
             return RedirectToPage("/Categories/Index", new {Message});
         }        

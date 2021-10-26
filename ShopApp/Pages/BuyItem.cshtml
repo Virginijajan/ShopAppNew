@@ -28,17 +28,17 @@
         }
         else
         {
-            <div class="form-group">
-                <label class="form-label" asp-for="Number"></label>
-                <input class="form-control" asp-for="Number" />
-                <span class="text-danger" asp-validation-for="Number"></span>
-            </div>
-            <button type="submit" class="btn btn-success px-4">Add to shopping cart</button>
+    <div class="form-group">
+        <label class="form-label" asp-for="Number"></label>
+        <input class="form-control" asp-for="Number" />
+        <span class="text-danger" asp-validation-for="Number"></span>        
+    </div>        
+        <button type="submit" class="form-control btn btn-success mt-2">Add to shopping cart</button>          
         }
     </form>
-    <p class="text-center mt-2 py-4 font-weight-bolder">@Model.Message</p>
-    <div class="row">
-        <div class="col-12 mt-4 mr-4"><a class="btn btn-outline-success px-4" href="\Items\AllItems">Shop items</a></div>
-        <div class="col-12 mt-4 mr-4"><a class="btn btn-outline-success px-4" href="\ShoppingCart">Shopping cart</a></div>
+    <p class="text-center mt-2 font-weight-bolder">@Model.Message</p>
+    <div class="btn-group">
+        <a class="btn btn-outline-success" href="\Items\Available">Available items</a>
+        <a class="btn btn-outline-success" href="\ShoppingCart">Shopping cart</a>
     </div>   
 </div>

@@ -5,37 +5,5 @@
 }
 <div class="container">
     <h4 class="text-center">@ViewData["Title"]</h4>
-    <form asp-page="Items/Index">
-        <div class="form-group">
-            <label class="form-label" asp-for="itemViewModel.Name"></label>
-            <input class="form-control" asp-for="itemViewModel.Name" />
-            <span class="text-danger" asp-validation-for="itemViewModel.Name"></span>
-        </div>
-        <div class="form-group">
-            <label class="form-label" asp-for="itemViewModel.CategoryId"></label>
-            <select class="form-control" asp-for="itemViewModel.CategoryId" asp-items="Model.Categories"></select>
-            <span class="text-danger" asp-validation-for="itemViewModel.CategoryId"></span>
-        </div>
-        <div class="form-group">
-            <label class="form-label" asp-for="itemViewModel.Description"></label>
-            <textarea class="form-control" asp-for="itemViewModel.Description"></textarea>
-            <span class="text-danger" asp-validation-for="itemViewModel.Description"></span>
-        </div>
-        <div class="form-group">
-            <label class="form-label" asp-for="itemViewModel.Quantity"></label>
-            <input class="form-control" asp-for="itemViewModel.Quantity" />
-            <span class="text-danger" asp-validation-for="itemViewModel.Quantity"></span>
-        </div>
-        <div class="form-group">
-            <label class="form-label" asp-for="itemViewModel.Price"></label>
-            <input class="form-control" asp-for="itemViewModel.Price" />
-            <span class="text-danger" asp-validation-for="itemViewModel.Price"></span>
-        </div>
-        <div class="form-group">
-            <label class="form-label" asp-for="itemViewModel.Image"></label>
-            <select class="form-control" asp-for="itemViewModel.Image" asp-items="Model.Images"></select>
-            <span class="text-danger" asp-validation-for="itemViewModel.Image"></span>
-        </div>
-        <button type="submit" class="btn btn-dark btn-lg btn-block mt-1">Submit</button>
-    </form>    
+    <partial name="_ShopItemCreatePartial" model="Model.Item"/>
 </div>

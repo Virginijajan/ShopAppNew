@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ShopService.ViewModels;
+using static ShopAppUI.Pages.Items.CreateModel;
 
 namespace ShopAppUI.Pages.Items
 {
@@ -16,14 +17,9 @@ namespace ShopAppUI.Pages.Items
     {
         private readonly ShopItemsService _shopItemsService;
         private readonly CategoriesService _categoriesService;
-        public string Message { get; set; }
+
         [BindProperty]
-        public ItemViewModel itemViewModel { get; set; }       
-        public CategoryViewModel categoryViewModel { get; set; }
-        public IEnumerable<SelectListItem> Categories { get; set; }
-            = new List<SelectListItem>();
-        public IEnumerable<SelectListItem> Images { get; set; }
-            = new List<SelectListItem>();
+        public CreateItemModel Item { get; set; } = new CreateItemModel();
         public EditModel(ShopItemsService shopItemsService, CategoriesService categoriesService)
             {
                 _shopItemsService = shopItemsService;
@@ -31,28 +27,28 @@ namespace ShopAppUI.Pages.Items
             }       
         public async Task OnGetAsync(int id)
         {
-            itemViewModel= await _shopItemsService.GetShopItemById(id);
+            Item.itemViewModel= await _shopItemsService.GetShopItemById(id);
             var categories = await _categoriesService.GetCategories();
             foreach(var category in categories)
-                Categories=Categories.Append(new SelectListItem { Value = category.Id.ToString(), Text = category.Name });
-            Images=GetImages.GetImagesNames();
+                Item.Categories=Item.Categories.Append(new SelectListItem { Value = category.Id.ToString(), Text = category.Name });
+            Item.Images=GetImages.GetImagesNames();
             Page();
         }
         public async Task<IActionResult> OnPostAsync(int id)
         {
             if (!ModelState.IsValid)
             {
-                itemViewModel = await _shopItemsService.GetShopItemById(id);
+                Item.itemViewModel = await _shopItemsService.GetShopItemById(id);
                 var categories = await _categoriesService.GetCategories();
                 foreach (var category in categories)
-                    Categories = Categories.Append(new SelectListItem { Value = category.Id.ToString(), Text = category.Name });
-                Images=GetImages.GetImagesNames();
+                    Item.Categories = Item.Categories.Append(new SelectListItem { Value = category.Id.ToString(), Text = category.Name });
+                Item.Images=GetImages.GetImagesNames();
                 return Page();
             }
-            itemViewModel.Id = id;            
-            await _shopItemsService.UpdateShopItemDb(itemViewModel);
-            Message = _shopItemsService.Message;
-            return RedirectToPage("/Items/Index", new {Message});
+            Item.itemViewModel.Id = id;            
+            await _shopItemsService.UpdateShopItemDb(Item.itemViewModel);
+            Item.Message= _shopItemsService.Message;
+            return RedirectToPage("/Items/Index", new {Item.Message});
         }
     }
 }

@@ -5,8 +5,8 @@
     var imagePath = "";
     imagePath = @"..\..\images\";
 }
-<div class="text-center">
-    <h4>@ViewData["Title"]</h4>
+<div class="container">
+    <h4 class="text-center">@ViewData["Title"]</h4>
     <ul class="list-group">
         <li class="list-group-item">
             <div class="row bg-light font-weight-bold">
@@ -38,9 +38,9 @@
             </li>
         }
     </ul>
-    <div>Total amount: @Model.Amount</div>
+    <div class="p-3 font-weight-bolder">Total amount: @Model.Amount EUR</div>
     <form asp-page="ShoppingCart">
-        <button type="submit" class="btn btn-outline-dark">Buy</button>
+        <button type="submit" class="form-control btn btn-outline-dark">Buy</button>
     </form>
-    <div class="col mt-4"><a class="btn btn-outline-success px-4" href="\Items\AllItems">Shop items</a></div>
+    <a class="btn btn-outline-success mt-3" href="\Items\Available">Available items</a>
 </div>

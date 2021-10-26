@@ -3,14 +3,4 @@
 @{
     ViewData["Title"] = "Edit the category";
 }
-<div class="container">
-    <h4 class="text-center">@ViewData["Title"]</h4>
-    <form asp-page="Categories/Index">
-        <div class="form-group">
-            <label class="form-label" asp-for="categoryViewModel.Name"></label>
-            <input class="form-control" asp-for="categoryViewModel.Name" />
-            <span class="text-danger" asp-validation-for="categoryViewModel.Name"></span>
-        </div>
-        <button type="submit" class="btn btn-dark btn-lg btn-block mt-1">Submit</button>
-    </form>
-</div>
+<partial name="_CategoriesPartial" model="Model.CategoryViewModel" />

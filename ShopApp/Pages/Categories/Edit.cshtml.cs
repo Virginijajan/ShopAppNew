@@ -15,25 +15,25 @@ namespace ShopAppUI.Pages.Categories
         public string Message { get; set; }
         private readonly CategoriesService _categoriesService;       
         [BindProperty]
-        public CategoryViewModel categoryViewModel { get; set; }
+        public CategoryViewModel CategoryViewModel { get; set; }
         public EditModel(CategoriesService categoriesService)
         {           
             _categoriesService = categoriesService;
         }
         public async Task OnGetAsync(int id)
         {
-            categoryViewModel = await _categoriesService.GetCategoryById(id);
+            CategoryViewModel = await _categoriesService.GetCategoryById(id);
             Page();
         }
         public async Task<IActionResult> OnPostAsync(int id)
         {
             if (!ModelState.IsValid)
             {
-                categoryViewModel = await _categoriesService.GetCategoryById(id);
+                CategoryViewModel = await _categoriesService.GetCategoryById(id);
                 return Page();
             }
-            categoryViewModel.Id = id;
-            await _categoriesService.UpdateCategory(categoryViewModel);
+            CategoryViewModel.Id = id;
+            await _categoriesService.UpdateCategory(CategoryViewModel);
             Message = _categoriesService.Message;
             return RedirectToPage("/Categories/Index", new {Message});
         }

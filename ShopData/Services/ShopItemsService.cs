@@ -127,5 +127,17 @@ namespace ShopService.ViewModels
                 amount += item;
           return amount;
         }
+        public async Task<List<ItemViewModel>> GetAvailableShopItems()
+        {
+            return await _db.Items.Where(i=>i.Quantity!=0).Select(i => new ItemViewModel
+            {
+                Id = i.Id,
+                Name = i.Name,
+                Description = i.Description,
+                Image = i.Image,
+                Quantity = i.Quantity,
+                Price = i.Price
+            }).ToListAsync();
+        }
     }   
 }

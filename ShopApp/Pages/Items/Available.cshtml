@@ -1,0 +1,9 @@
+﻿@page
+@model ShopAppUI.Pages.Items.AvailableModel
+@{
+    ViewData["Title"] = "Available shop items";
+}
+<div class="text-center">
+    <h4>@ViewData["Title"]</h4>
+    <partial name="_ShopItemPartial" model="Model.Items" />
+</div>

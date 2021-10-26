@@ -11,14 +11,20 @@
             <li class="list-group-item">
                 <div class="row bg-light p-1">
                     <div class="col m-3 p-1" style="font-size:larger"> @category.Name</div>
-                    <div class="col m-3"> <a class="btn btn-success float-right" href="\Items\List\@category.Id">Items</a></div>
+                    <div class="col m-3"> <a class="btn btn-success float-right" href="\Items\List\@category.Id">View</a></div>
                 </div>
             </li>
         }
         <li class="list-group-item">
             <div class="row bg-light p-1">
                 <div class="col m-3 p-1" style="font-size:larger">All shop items</div>
-                <div class="col m-3"> <a class="btn btn-success float-right" href="\Items\AllItems\">Items</a></div>
+                <div class="col m-3"> <a class="btn btn-success float-right" href="\Items\AllItems\">View</a></div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="row bg-light p-1">
+                <div class="col m-3 p-1" style="font-size:larger">Available shop items</div>
+                <div class="col m-3"> <a class="btn btn-success float-right" href="\Items\Available\">View</a></div>
             </div>
         </li>
     </ul>
@@ -30,7 +36,7 @@
                 {
                     <li class="list-group-item">@message</li>
                 }
-                <li class="list-group-item font-weight-bold">Total amount: @Model.Amount</li>
+                <li class="list-group-item font-weight-bold">Total amount: @Model.Amount EUR</li>
             </ul>
         }
     </div>
